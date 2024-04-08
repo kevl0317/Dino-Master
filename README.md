@@ -1,4 +1,4 @@
-![cover](readme/chatwaifu.png)
+<!-- ![cover](readme/chatwaifu.png)
 
 [中文](README.md "中文") [English](eng-README.md "English") [日本語](jp-README.md "日本語")
 
@@ -42,4 +42,4 @@
 ## <span id="915">6.鸣谢：</span>
 - [MoeGoe_GUI]https://github.com/CjangCjengh/MoeGoe_GUI
 - [Pretrained models]https://github.com/CjangCjengh/TTSModels
-- [PyChatGPT]https://github.com/terry3041/pyChatGPT
+- [PyChatGPT]https://github.com/terry3041/pyChatGPT -->
