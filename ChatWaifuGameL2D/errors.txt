@@ -2,11 +2,9 @@
 errors listed below, and try again.
 
 
-The label inputMethod is defined twice, at File "game/script.rpy", line 69:
-label inputMethod:
-and File "game/script.rpy", line 70:
-    menu inputMethod: #input 1
+File "game/script.rpy", line 40: expected statement.
+    e output
+            ^
 
-
-Ren'Py Version: Ren'Py 8.0.3.22090809
-Thu Dec 22 20:35:53 2022
+Ren'Py Version: Ren'Py 8.2.1.24030407
+Mon Apr  8 00:21:19 2024

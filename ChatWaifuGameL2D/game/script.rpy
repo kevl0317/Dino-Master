@@ -1,9 +1,5 @@
-﻿# 游戏的脚本可置于此文件中。
-
-# 声明此游戏使用的角色。颜色参数可使角色姓名着色。
-
-define e = Character("Hiyori")
-define y = Character("你")
+﻿define e = Character("Hiyori")
+define y = Character("You")
 define config.gl2 = True
 
 image hiyori = Live2D("Resources/hiyori", base=.6, loop = True, fade=True)
@@ -19,29 +15,15 @@ init python:
     client.connect(ip_port)
 
 
-# 游戏在此开始。
-
+# Start of game
 label start:
-    # 默认自动
-    $ renpy.auto_forward(True)
-    # 不可反悔
+    # no rollback
     $ renpy.block_rollback()
-    # 显示一个背景。此处默认显示占位图，但您也可以在图片目录添加一个文件
-    # （命名为 bg room.png 或 bg room.jpg）来显示。
 
-    #scene bg library
-
-    # 显示角色立绘。此处使用了占位图，但您也可以在图片目录添加命名为
-    # eileen happy.png 的文件来将其替换掉。
     show hiyori m01
 
-    #show eileen happy
-
-    # 此处显示各行对话。
-
-
     python:
-        token = renpy.input("让我们开始吧，请输入OpenAI的API Key")
+        token = renpy.input("Enter your OpenAI API Key")
         client.send(token.encode())
     
 

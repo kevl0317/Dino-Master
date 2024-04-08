@@ -1,38 +1,26 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 9, in script
-    image hiyori = Live2D("Resources/hiyori", base=.6, loop = True, fade=True)
-  File "game/script.rpy", line 9, in <module>
-    image hiyori = Live2D("Resources/hiyori", base=.6, loop = True, fade=True)
-Exception: Could not load Live2D. b'Live2DCubismCore.dll' was not found.
+  File "game/script.rpy", line 21, in script
+    $ renpy.auto_forward(True)
+  File "game/script.rpy", line 21, in <module>
+    $ renpy.auto_forward(True)
+AttributeError: module 'renpy.exports' has no attribute 'auto_forward'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 9, in script
-    image hiyori = Live2D("Resources/hiyori", base=.6, loop = True, fade=True)
-  File "C:\Users\24510\Downloads\renpy-8.2.1-sdk\renpy\ast.py", line 922, in execute
-    img = renpy.python.py_eval_bytecode(self.code.bytecode)
-  File "C:\Users\24510\Downloads\renpy-8.2.1-sdk\renpy\python.py", line 1202, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-  File "game/script.rpy", line 9, in <module>
-    image hiyori = Live2D("Resources/hiyori", base=.6, loop = True, fade=True)
-  File "C:\Users\24510\Downloads\renpy-8.2.1-sdk\renpy\gl2\live2d.py", line 587, in __init__
-    common = self.common
-  File "C:\Users\24510\Downloads\renpy-8.2.1-sdk\renpy\gl2\live2d.py", line 538, in common
-    return self.create_common()
-  File "C:\Users\24510\Downloads\renpy-8.2.1-sdk\renpy\gl2\live2d.py", line 526, in create_common
-    rv = Live2DCommon(self.filename, self.default_fade)
-  File "C:\Users\24510\Downloads\renpy-8.2.1-sdk\renpy\gl2\live2d.py", line 188, in __init__
-    init()
-  File "C:\Users\24510\Downloads\renpy-8.2.1-sdk\renpy\gl2\live2d.py", line 95, in init
-    onetime_init()
-  File "C:\Users\24510\Downloads\renpy-8.2.1-sdk\renpy\gl2\live2d.py", line 68, in onetime_init
-    raise Exception("Could not load Live2D. {} was not found.".format(dll))
-Exception: Could not load Live2D. b'Live2DCubismCore.dll' was not found.
+  File "game/script.rpy", line 21, in script
+    $ renpy.auto_forward(True)
+  File "D:\renpy-8.2.1-sdk\renpy\ast.py", line 823, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "D:\renpy-8.2.1-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/script.rpy", line 21, in <module>
+    $ renpy.auto_forward(True)
+AttributeError: module 'renpy.exports' has no attribute 'auto_forward'
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.2.1.24030407
 ChatWaifuL2D 2.0
-Sun Apr  7 23:02:41 2024
+Mon Apr  8 00:25:31 2024
