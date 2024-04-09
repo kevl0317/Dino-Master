@@ -14,6 +14,10 @@ import sounddevice as sd
 from vosk import Model, KaldiRecognizer
 import json
 from openai import OpenAI
+import tkinter as tk
+from tkinter import filedialog
+import zipfile
+import os
 
 chinese_model_path = ".\model\CN\model.pth"
 chinese_config_path = ".\model\CN\config.json"
@@ -215,7 +219,48 @@ def get_reponse(input):
     # Extract and return the text from the API response
     return response.choices[0].message.content
 
+def show_window():
+    extract_to = './ChatWaifuGameL2D/game/Resources/'  # Specify the directory where you want to extract the files
+    write_to = './ChatWaifuGameL2D/game/'
+
+    def unzip_file(zip_file, extract_to):
+        print("Unzipping to:", extract_to)
+        with zipfile.ZipFile(zip_file, 'r') as zip_ref:
+            zip_ref.extractall(extract_to)
+        extracted_folder_name = os.path.splitext(os.path.basename(zip_file))[0]
+        return extracted_folder_name
+
+    def upload_file():
+        file_path = filedialog.askopenfilename(filetypes=[("ZIP files", "*.zip")])
+        if file_path:
+            print("Selected file:", file_path)
+            name = unzip_file(file_path, extract_to)
+            f = open((write_to + "model_path.txt"),"w")
+            f.write(name)
+            f.close()
+        window.destroy()
+
+    # Create a Tkinter window
+    window = tk.Tk()
+    window.geometry("400x200")
+    window.title("File Uploader")
+    window.iconbitmap("check.ico")
+    window.resizable(False, False)
+
+    label_text = "Upload your model as a '.zip' file.\nClose this window to use default model"
+    label = tk.Label(window, text=label_text, wraplength=300)
+    label.pack(pady=10)
+
+    # Create a button for uploading a file
+    upload_button = tk.Button(window, text="Upload File", command=upload_file)
+    upload_button.pack(pady=20)
+
+    # Start the Tkinter event loop
+    window.mainloop()
+
+###Main###
 if __name__ == "__main__":
+    show_window()
     print("链接已生成，等待UI连接")
     client, client_addr = s.accept()
     print("链接已建立,等待接受token")

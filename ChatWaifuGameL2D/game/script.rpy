@@ -2,11 +2,10 @@
 define y = Character("You")
 define config.gl2 = True
 
-image hiyori = Live2D("Resources/hiyori", base=.6, loop = True, fade=True)
-
 init python:
     import socket
     import time
+    import subprocess
     thinking = 0
     total_data = bytes()
     renpy.block_rollback()
@@ -14,28 +13,38 @@ init python:
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
     client.connect(ip_port)
 
+    def read_from_file(file_path):
+        f = open(renpy.loader.transfn(file_path),"r")
+        path = f.read().strip()
+        return path
+    
+    path = read_from_file("./model_path.txt")
+    renpy.image("character", Live2D(f"Resources/{path}", base=.6, loop=True, fade=True))
+
+# $ path = read_from_file("./model_path.txt")
+# $ renpy.image("hiyori", Live2D(f"Resources/{path}", base=.6, loop=True, fade=True))
+# image hiyori = Live2D("Resources/[path]", base=.6, loop=True, fade=True)
 
 # Start of game
 label start:
     # no rollback
     $ renpy.block_rollback()
 
-    show hiyori m01
+    show character m01
 
     python:
         token = renpy.input("Enter your OpenAI API Key")
         client.send(token.encode())
-    
 
     jump checkToken
     return
-    
+
 
 label checkToken:
     $ renpy.block_rollback()
     e "API Key已发送，正在等待浏览器加载..."
     if (thinking == 0):
-        show hiyori m03
+        show character m03
 
     python:
         client.setblocking(0)
@@ -57,7 +66,7 @@ label checkToken:
 
 label inputMethod:
     $ renpy.block_rollback()
-    show hiyori m01
+    show character m01
     menu inputMethod1: #input 1
         e "请选择输入方式"
 
@@ -171,7 +180,7 @@ label modelChoiceJP:
     
 label talk_keyboard:
     $ renpy.block_rollback()
-    show hiyori m02
+    show character m02
     python:
         message = renpy.input("你：")
         client.send(message.encode())
@@ -182,7 +191,7 @@ label talk_keyboard:
 label talk_voice:
     $ renpy.block_rollback()
     if(thinking == 0):
-        show hiyori m02
+        show character m02
     y "你："
     python:
         client.setblocking(0)
@@ -205,7 +214,7 @@ label talk_voice:
 label checkRes:
     $ renpy.block_rollback()
     if(thinking == 0):
-        show hiyori m03
+        show character m03
     e "..."
 
     python:
@@ -230,10 +239,8 @@ label checkRes:
         jump checkRes
 
         
-
-
 label answer:
-    show hiyori talking
+    show character talking
     voice "/audio/test.ogg"
     $ renpy.block_rollback()
     e "[response]"

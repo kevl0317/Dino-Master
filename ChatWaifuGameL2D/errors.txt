@@ -2,9 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 40: expected statement.
-    e output
-            ^
+File "game/script.rpy", line 17: expected an indented block
+    with open("./model_path.txt","r") as file:
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Mon Apr  8 00:21:19 2024
+Mon Apr  8 22:45:56 2024
